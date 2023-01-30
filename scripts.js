@@ -24,7 +24,13 @@ let submitTimer = () => {
     })
 }
 
-let dreamFortune = (e) => {
+let fetchGif = async (feeling) =>{
+    api_url = `https://api.giphy.com/v1/gifs/random?api_key=QCRziCMRKghancsR25ewIK9XXXy5obzR&tag=${feeling}`
+    let res = await fetch(api_url)
+    res = await res.json()
+    return res.data.images.downsized_medium.url
+}
+let dreamFortune = async (e) => {
     e.preventDefault()
     // see if is already a dream and delete it
     if(document.querySelector(".futureFortune"))
@@ -35,11 +41,10 @@ let dreamFortune = (e) => {
 
     let dreamTeller = document.querySelector("#dreamTeller")
     let fortune = Math.random()
-    console.log(fortune)
-    dreamTeller.append(Fortune(fortune))
+    dreamTeller.append(await Fortune(fortune))
 }
 
-let Fortune = (number) => {
+let Fortune = async (number) => {
     // get the persons dream
     let dream = document.querySelector("#dream").value
     dream = dream.charAt(0).toUpperCase() + dream.slice(1);
@@ -55,17 +60,16 @@ let Fortune = (number) => {
     if(number > 0.55)
     {
     futureFortuneMessage = document.createElement("h3")
-    futureFortuneMessage.appendChild(document.createTextNode(dream + " se hará realidad!"))
+    futureFortuneMessage.appendChild(document.createTextNode(`Your dream of ${dream} seems very likely`))
     futureFortuneImage = document.createElement("img")
-    futureFortuneImage.src = "https://media4.giphy.com/media/xUPGcIYm8zNwZ7xRIY/giphy.gif?cid=ecf05e473wpxh5h1wto0tfxgmx1ig1maaxcd72a64y837c3f&rid=giphy.gif&ct=g"
+    futureFortuneImage.src = await fetchGif('happy')
     }
     else
     {
-        message = document.createTextNode(dream + " no parece muy probable :c")
         futureFortuneMessage = document.createElement("h3")
-        futureFortuneMessage.appendChild(document.createTextNode(dream + " no parece muy probable :c"))
+        futureFortuneMessage.appendChild(document.createTextNode(`Your dream of ${dream} doesn't seem very likely`))
         futureFortuneImage = document.createElement("img")
-        futureFortuneImage.src = "https://media2.giphy.com/media/nWZOsARnPxlK0/giphy.gif?cid=ecf05e47f8hxlgdw14zg7wuz0gnn7ytlkuqola51mkt39bbj&rid=giphy.gif&ct=g"
+        futureFortuneImage.src = await fetchGif('sad')
     }
     futureFortune.appendChild(futureFortuneMessage)
     futureFortune.appendChild(futureFortuneImage)
