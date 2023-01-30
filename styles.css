@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
 .big_daddy {
     display: flex;
     flex-direction: column;
@@ -46,7 +47,7 @@
 .footer_items {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 .footer_title {
     color:azure
@@ -69,7 +70,51 @@
     flex-direction: column;
     align-self: center;
     text-align: center;
-    font-family: 'Grape Nuts', cursive;
+    font-family: 'Covered By Your Grace', cursive;
+    background-image:  linear-gradient(#D1D1D1 1px, transparent 1px), linear-gradient(to right, #D1D1D1 1px, #DEDEDE 1px);
+    background-size: 20px 20px;
+    margin-top: 2vh;
+    position: relative;
+}
+.whoframe__title_container{
+    display: flex;
+    justify-content: center;
+}
+.whoframe__title_paper{
+    width: 50vh;
+}
+
+
+.whoframe__title{
+    position: relative;
+}
+
+.draws_container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.draws_container__box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.draws_container__dog{
+    height: 30vh;
+    transform: rotate(10deg);
+    position: absolute;
+    left: 0px;
+}
+
+.draws_container__stick{
+    height: 30vh;
+    transform: rotate(-10deg);
+    position: absolute;
+    right: 10%;
+    top: 20%;
+
 }
 
 .avatar{
@@ -77,13 +122,25 @@
     width: 35vh;
     margin-top: 0.5vh;
     align-self: center;
+    --shine-angle: 15deg;
+    border: white solid 1vh;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .biotitle{
-    font-size: 50px;
+    opacity: 0.8;
+    font-size: 4vh;
     margin: 0;
     font-weight: bold;
+    z-index: 2;
+    position: absolute;
+    top: 40%;
+    left: 32%;
 }
+.whoframe__description_container{
+    opacity: 0.8;
+}
+
 
 .bio{
     font-size: 27pt;
@@ -111,7 +168,7 @@
 .dreaminput{
     margin: 0 50vh;
     color:white !important;
-    text-align: center !important;
+    text-align: center ;
 }
 
 .dreaminput:focus{
@@ -120,7 +177,7 @@
 }
 
 .dreaminput::placeholder{
-    color: white !important;
+    color: white ;
     opacity: 1;
 }
 
@@ -172,3 +229,7 @@
     border: none;
     outline: none;
 }
+
+input:focus::placeholder {
+    color: transparent !important;
+  }
